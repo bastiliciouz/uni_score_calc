@@ -1,24 +1,16 @@
-from averageCalc import AverageCalc
-from csvMapper import CsvMapper
+#!/usr/bin/python3.7
+# -*-coding: utf-8-*-
+from functions import Calculator
 
-file_path = 'resources/Aktueller_Schnitt.csv'
-a = AverageCalc()
-mapper = CsvMapper(file_path)
-# noten = [(10, 3.7),
-#          (5, 2),
-#          (5, 1.7),
-#          (7, 1.3),
-#          (7, 1.3),
-#          (5, 1.7),
-#          (5, 2),
-#          (6, 2),
-#          (5, 2),
-#          (8, 1.7),
-#          (5, 1),
-#          (5, 2),
-#          (5, 1.3)]
 
-mapped_list = mapper.map_to_list()
-schnitt = a.calc(mapped_list)
-print(mapped_list)
-print(f"Schnitt: {schnitt:1.2f}")
+filepath = 'resources/Aktueller_Schnitt.csv'
+noten = Calculator(filepath)
+
+uebersicht = noten.read_csv()
+print(f"{uebersicht[['Credits', 'Note']]}\n")
+
+avg = noten.calc()
+print(f"Durchschnittsnote:           {round(avg, 4)}")
+
+avg_gewichtet = noten.calc_gewichtet()
+print(f"Durchschnittsnote gewichtet: {round(avg_gewichtet, 4)}")
