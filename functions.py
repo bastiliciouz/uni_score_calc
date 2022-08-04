@@ -28,6 +28,9 @@ class Calculator:
         """Devide the sum of all multiplyed credits and grades by the sum of credits"""
         return self.csv_file["Credits_x_Note"].sum() / self.csv_file["Credits"].sum()
 
+    def credits_bislang(self) -> np.int64:
+        return self.csv_file["Credits"].sum()
+
     def graphic(self):
         x_values = [1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0]
         graphic = sns.displot(self.csv_file["Note"], bins=x_values, kde=True)
